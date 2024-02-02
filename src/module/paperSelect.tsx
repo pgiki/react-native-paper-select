@@ -65,6 +65,9 @@ const PaperSelect = ({
   textInputProps: textInputPropOverrides,
   checkboxProps: checkboxPropsOverrides,
   searchbarProps: searchbarPropsOverrides,
+
+  //extra props
+  onChangeSearchText,
 }: PaperSelectProps) => {
   const theme = useTheme<InternalTheme>(themeOverrides);
 
@@ -308,7 +311,14 @@ const PaperSelect = ({
                   {...searchbarPropsOverrides}
                   value={searchKey}
                   placeholder={searchText}
-                  onChangeText={(text: string) => _filterFunction(text)}
+                  onChangeText={(text: string) =>{
+                    if(onChangeSearchText){
+                      setSearchKey(text);
+                      onChangeSearchText(text);
+                    }else{
+                      _filterFunction(text);
+                    }
+                  }}
                   style={[styles.searchbar, searchStyle]}
                 />
               ) : null}

@@ -15,6 +15,7 @@ export interface SelectedItem {
 }
 
 export type SelectionCallback = (item: SelectedItem) => void;
+export type onChangeSearchText = (text: String) => void;
 
 export type PaperSelectTextInputProps = Pick<
   TextInputProps,
@@ -72,4 +73,7 @@ export interface PaperSelectProps {
   textInputProps?: PaperSelectTextInputProps;
   checkboxProps?: PaperSelectCheckboxProps;
   searchbarProps?: PaperSelectSearchbarProps;
+
+  // extra props
+  onChangeSearchText: onChangeSearchText;
 }
