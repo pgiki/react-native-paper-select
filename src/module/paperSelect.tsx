@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useRef, useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -107,6 +107,11 @@ const PaperSelect = ({
   const [visible, setVisible] = useState<boolean>(false);
 
   const showDialog = () => setVisible(true);
+
+  useEffect(()=>{
+    // this will help to synchronize with externally mantained arraylist
+    setList(arrayList)
+  }, [arrayList])
 
   const _hideDialog = () => {
     setSearchKey('');
